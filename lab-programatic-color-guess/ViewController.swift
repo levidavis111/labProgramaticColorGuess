@@ -9,12 +9,33 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    lazy var redButton: UIButton = {
+        let redButton = UIButton()
+        redButton.backgroundColor = .red
+        redButton.setTitle("Red", for: .normal)
+        redButton.setTitleColor(.black, for: .normal)
+
+        return redButton
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        self.view.backgroundColor = .white
+        addSubViews()
+        addConstraintsToSubViews()
     }
-
+    
+    private func addSubViews() {
+        redButton.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(redButton)
+    }
+    
+    private func addConstraintsToSubViews() {
+        redButton.centerXAnchor.constraint(equalToSystemSpacingAfter: self.view.centerXAnchor, multiplier: 1).isActive = true
+        redButton.centerYAnchor.constraint(equalToSystemSpacingBelow: self.view.centerYAnchor, multiplier: 1).isActive = true
+        redButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+    }
 
 }
 
