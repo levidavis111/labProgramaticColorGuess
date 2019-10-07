@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    let colorModel = ColorGuessingModel()
+    
     lazy var redButton: UIButton = {
         let redButton = UIButton()
         redButton.backgroundColor = .red
@@ -40,7 +42,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        setDefaultBackgroundColor()
         addSubViews()
         addConstraintsToSubViews()
     }
@@ -78,6 +80,10 @@ class ViewController: UIViewController {
     
     @objc private func greenButtonPressed(sender: UIButton!) {
         self.view.backgroundColor = .green
+    }
+    
+    private func setDefaultBackgroundColor() {
+        self.view.backgroundColor = colorModel.getNewColor()
     }
 
 }
