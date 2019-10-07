@@ -10,8 +10,15 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let colorModel = ColorGuessingModel()
+    //MARK: - Local variable
     
+    let colorModel = ColorGuessingModel()
+    var color = UIColor() {
+        didSet {
+            self.view.backgroundColor = color
+            
+        }
+    }
     lazy var label: UILabel = {
         let label = UILabel()
         label.text = "Guess the Dominant Color!"
@@ -52,13 +59,17 @@ class ViewController: UIViewController {
         greenButton.addTarget(self, action: #selector(greenButtonPressed(sender:)), for: .touchUpInside)
         return greenButton
     }()
+    
+    //MARK: - Override functions
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setDefaultBackgroundColor()
+        getRandomColor()
         addSubViews()
         addConstraintsToSubViews()
     }
+    
+    //MARK: - Private functions
     
     
     private func addSubViews() {
@@ -89,17 +100,21 @@ class ViewController: UIViewController {
     
     @objc private func redButtonPressed(sender: UIButton!) {
         if colorModel.isDominant(guess: .red) {
-            
+            self.label.text = "Correct! The Dominant Color is red!"
             print("yes")
         } else {
+            self.label.text = "WRONG!"
             print("no")
         }
     }
     
     @objc private func blueButtonPressed(sender: UIButton!) {
         if colorModel.isDominant(guess: .blue) {
+            self.label.text = "Correct! The Dominant Color is blue!"
+
             print("yes")
         } else {
+            self.label.text = "WRONG!"
             print("no")
         }
         
@@ -107,15 +122,17 @@ class ViewController: UIViewController {
     
     @objc private func greenButtonPressed(sender: UIButton!) {
         if colorModel.isDominant(guess: .green) {
+            self.label.text = "Correct! The Dominant Color is green!"
             print("yes")
         } else {
+            self.label.text = "WRONG!"
             print("no")
         }
         
     }
-    
-    private func setDefaultBackgroundColor() {
-        self.view.backgroundColor = colorModel.getNewColor()
+    private func getRandomColor() {
+        self.color = colorModel.getNewColor()
+        
     }
 
 }

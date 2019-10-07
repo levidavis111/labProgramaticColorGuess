@@ -27,9 +27,9 @@ class ColorGuessingModel {
     }
         
     static private func randColor() -> (color: UIColor, dominantColor: UIColor) {
-        let redValue = CGFloat(drand48())
-        let greenValue = CGFloat(drand48())
-        let blueValue = CGFloat(drand48())
+        let redValue = CGFloat(Float.random(in: 0...1))
+        let greenValue = CGFloat(Float.random(in: 0...1))
+        let blueValue = CGFloat(Float.random(in: 0...1))
         let color = UIColor(displayP3Red: redValue, green: greenValue, blue: blueValue, alpha: 1)
         let dominantColor: UIColor
         if max(redValue, greenValue, blueValue) == redValue {
