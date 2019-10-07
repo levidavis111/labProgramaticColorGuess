@@ -60,6 +60,16 @@ class ViewController: UIViewController {
         return greenButton
     }()
     
+    lazy var nextButton: UIButton = {
+        let nextButton = UIButton()
+        nextButton.backgroundColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
+        nextButton.setTitle("Next", for: .normal)
+        nextButton.setTitleColor(.black, for: .normal)
+        nextButton.tag = 4
+        nextButton.addTarget(self, action: #selector(nextButtonPressed(sender:)), for: .touchUpInside)
+        return nextButton
+    }()
+    
     //MARK: - Override functions
 
     override func viewDidLoad() {
@@ -77,6 +87,7 @@ class ViewController: UIViewController {
         self.view.addSubview(redButton)
         self.view.addSubview(blueButton)
         self.view.addSubview(greenButton)
+        self.view.addSubview(nextButton)
     }
     
     private func addConstraintsToSubViews() {
@@ -84,6 +95,7 @@ class ViewController: UIViewController {
         redButton.translatesAutoresizingMaskIntoConstraints = false
         blueButton.translatesAutoresizingMaskIntoConstraints = false
         greenButton.translatesAutoresizingMaskIntoConstraints = false
+        nextButton.translatesAutoresizingMaskIntoConstraints = false
         redButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         redButton.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         redButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
@@ -93,6 +105,9 @@ class ViewController: UIViewController {
         greenButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         greenButton.topAnchor.constraint(equalTo: self.blueButton.bottomAnchor, constant: 10).isActive = true
         greenButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        nextButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        nextButton.topAnchor.constraint(equalTo: self.greenButton.bottomAnchor, constant: 10).isActive = true
+        nextButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
         label.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         label.bottomAnchor.constraint(equalTo: self.redButton.topAnchor, constant: -50).isActive = true
         
@@ -104,6 +119,7 @@ class ViewController: UIViewController {
             print("yes")
         } else {
             self.label.text = "WRONG!"
+            
             print("no")
         }
     }
@@ -115,6 +131,7 @@ class ViewController: UIViewController {
             print("yes")
         } else {
             self.label.text = "WRONG!"
+            
             print("no")
         }
         
@@ -126,10 +143,17 @@ class ViewController: UIViewController {
             print("yes")
         } else {
             self.label.text = "WRONG!"
+            
             print("no")
         }
         
     }
+    
+    @objc private func nextButtonPressed(sender: UIButton!) {
+        getRandomColor()
+        self.label.text = "Guess the Dominant Color!"
+    }
+    
     private func getRandomColor() {
         self.color = colorModel.getNewColor()
         
