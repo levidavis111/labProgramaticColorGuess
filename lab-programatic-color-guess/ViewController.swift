@@ -15,6 +15,7 @@ class ViewController: UIViewController {
         redButton.backgroundColor = .red
         redButton.setTitle("Red", for: .normal)
         redButton.setTitleColor(.black, for: .normal)
+        redButton.addTarget(self, action: #selector(redButtonPressed(sender:)), for: .touchUpInside)
 
         return redButton
     }()
@@ -24,6 +25,7 @@ class ViewController: UIViewController {
         blueButton.backgroundColor = .blue
         blueButton.setTitle("Blue", for: .normal)
         blueButton.setTitleColor(.black, for: .normal)
+        blueButton.addTarget(self, action: #selector(blueButtonPressed(sender:)), for: .touchUpInside)
         return blueButton
     }()
     
@@ -32,6 +34,7 @@ class ViewController: UIViewController {
         greenButton.backgroundColor = .green
         greenButton.setTitle("Green", for: .normal)
         greenButton.setTitleColor(.black, for: .normal)
+        greenButton.addTarget(self, action: #selector(greenButtonPressed(sender:)), for: .touchUpInside)
         return greenButton
     }()
 
@@ -63,6 +66,18 @@ class ViewController: UIViewController {
         greenButton.topAnchor.constraint(equalTo: self.blueButton.bottomAnchor, constant: 10).isActive = true
         greenButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
+    }
+    
+    @objc private func redButtonPressed(sender: UIButton!) {
+        self.view.backgroundColor = .red
+    }
+    
+    @objc private func blueButtonPressed(sender: UIButton!) {
+        self.view.backgroundColor = .blue
+    }
+    
+    @objc private func greenButtonPressed(sender: UIButton!) {
+        self.view.backgroundColor = .green
     }
 
 }
