@@ -18,6 +18,14 @@ class ViewController: UIViewController {
 
         return redButton
     }()
+    
+    lazy var blueButton: UIButton = {
+        let blueButton = UIButton()
+        blueButton.backgroundColor = .blue
+        blueButton.setTitle("Blue", for: .normal)
+        blueButton.setTitleColor(.black, for: .normal)
+        return blueButton
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,13 +36,19 @@ class ViewController: UIViewController {
     
     private func addSubViews() {
         redButton.translatesAutoresizingMaskIntoConstraints = false
+        blueButton.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(redButton)
+        self.view.addSubview(blueButton)
     }
     
     private func addConstraintsToSubViews() {
         redButton.centerXAnchor.constraint(equalToSystemSpacingAfter: self.view.centerXAnchor, multiplier: 1).isActive = true
         redButton.centerYAnchor.constraint(equalToSystemSpacingBelow: self.view.centerYAnchor, multiplier: 1).isActive = true
         redButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        blueButton.centerXAnchor.constraint(equalToSystemSpacingAfter: self.view.centerXAnchor, multiplier: 1).isActive = true
+        blueButton.topAnchor.constraint(equalTo: self.redButton.bottomAnchor, constant: 30).isActive = true
+        blueButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        
     }
 
 }
