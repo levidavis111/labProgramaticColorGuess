@@ -26,6 +26,14 @@ class ViewController: UIViewController {
         blueButton.setTitleColor(.black, for: .normal)
         return blueButton
     }()
+    
+    lazy var greenButton: UIButton = {
+        let greenButton = UIButton()
+        greenButton.backgroundColor = .green
+        greenButton.setTitle("Green", for: .normal)
+        greenButton.setTitleColor(.black, for: .normal)
+        return greenButton
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,11 +42,14 @@ class ViewController: UIViewController {
         addConstraintsToSubViews()
     }
     
+    
     private func addSubViews() {
         redButton.translatesAutoresizingMaskIntoConstraints = false
         blueButton.translatesAutoresizingMaskIntoConstraints = false
+        greenButton.translatesAutoresizingMaskIntoConstraints = false
         self.view.addSubview(redButton)
         self.view.addSubview(blueButton)
+        self.view.addSubview(greenButton)
     }
     
     private func addConstraintsToSubViews() {
@@ -46,8 +57,11 @@ class ViewController: UIViewController {
         redButton.centerYAnchor.constraint(equalToSystemSpacingBelow: self.view.centerYAnchor, multiplier: 1).isActive = true
         redButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
         blueButton.centerXAnchor.constraint(equalToSystemSpacingAfter: self.view.centerXAnchor, multiplier: 1).isActive = true
-        blueButton.topAnchor.constraint(equalTo: self.redButton.bottomAnchor, constant: 30).isActive = true
+        blueButton.topAnchor.constraint(equalTo: self.redButton.bottomAnchor, constant: 10).isActive = true
         blueButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        greenButton.centerXAnchor.constraint(equalToSystemSpacingAfter: self.view.centerXAnchor, multiplier: 1).isActive = true
+        greenButton.topAnchor.constraint(equalTo: self.blueButton.bottomAnchor, constant: 10).isActive = true
+        greenButton.widthAnchor.constraint(equalToConstant: 100).isActive = true
         
     }
 
